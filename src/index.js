@@ -1,6 +1,3 @@
-import { Heatmap } from './components/heatmap';
-import { Spatial } from './components/spatial';
-import { Scatterplot } from './components/scatterplot';
 import VitessceGrid from './app/VitessceGrid';
 import {
   createApp,
@@ -27,15 +24,6 @@ import TitleInfo from './components/TitleInfo';
 import { useReady, useUrls } from './components/hooks';
 import {
   useDescription,
-  useCellsData,
-  useCellSetsData,
-  useExpressionMatrixData,
-  useGeneSelection,
-  useExpressionAttrs,
-  useMoleculesData,
-  useNeighborhoodsData,
-  useRasterData,
-  useGenomicProfilesData,
 } from './components/data-hooks';
 import {
   useCoordination,
@@ -66,9 +54,6 @@ import {
 
 
 export {
-  Heatmap,
-  Spatial,
-  Scatterplot,
   VitessceGrid,
   createApp,
   Vitessce,
@@ -103,15 +88,6 @@ export {
   useWarning,
   useSetWarning,
   useDescription,
-  useCellsData,
-  useCellSetsData,
-  useExpressionMatrixData,
-  useGeneSelection,
-  useExpressionAttrs,
-  useMoleculesData,
-  useNeighborhoodsData,
-  useRasterData,
-  useGenomicProfilesData,
   JsonLoader,
   LoaderResult,
   AbstractTwoStepLoader,
