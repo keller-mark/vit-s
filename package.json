@@ -13,8 +13,8 @@
     "dist",
     "src"
   ],
-  "main": "dist/umd/production/index.min.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/vit-s.umd.js",
+  "module": "dist/vit-s.es.js",
   "peerDependencies": {
     "react": ">=16.14.0",
     "react-dom": ">=16.14.0"
