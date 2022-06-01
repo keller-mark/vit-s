@@ -1,10 +1,41 @@
 
 ### Added
+- Added warning log messages when outdated constant values have been accessed (via JS Proxy).
 - Added the optional `uid` property for view definitions in the view config.
+- Added coordination types for entity types.
+  - `obsType`
+  - `featureType`
+  - `featureValueType`
 
 ### Changed
 - Fixed buggy view closing behavior by using the view `uid` rather than the index as the component `key`.
 - Update code to reflect renaming of the default branch from `master` to `main`.
+- Change spatial layer coordination type names.
+  - `spatialRasterLayers` -> `spatialImageLayer`
+  - `spatialCellsLayer` -> `spatialSegmentationLayer`
+  - `spatialMoleculesLayer` -> `spatialPointLayer`
+  - `spatialNeighborhoodsLayer` -> `spatialNeighborhoodLayer`
+- Changed cell- and gene-related coordination type names.
+  - `cellFilter` -> `obsFilter`
+  - `cellHighlight` -> `obsHighlight`
+  - `cellSelection` -> `obsSelection`
+  - `cellSetSelection` -> `obsSetSelection`
+  - `cellSetHighlight` -> `obsSetHighlight`
+  - `cellSetColor` -> `obsSetColor`
+  - `geneFilter` -> `featureFilter`
+  - `geneHighlight` -> `featureHighlight`
+  - `geneSelection` -> `featureSelection`
+  - `geneExpressionColormap` -> `featureValueColormap`
+  - `geneExpressionColormapRange` -> `featureValueColormapRange`
+  - `cellColorEncoding` -> `obsColorEncoding`
+  - `additionalCellSets` -> `additionalObsSets`
+  - `embeddingCellSetPolygonsVisible` -> `embeddingObsSetPolygonsVisible`
+  - `embeddingCellSetLabelsVisible` -> `embeddingObsSetLabelsVisible`
+  - `embeddingCellSetLabelSize` -> `embeddingObsSetLabelSize`
+  - `embeddingCellRadius` -> `embeddingObsRadius`
+  - `embeddingCellRadiusMode` -> `embeddingObsRadiusMode`
+  - `embeddingCellOpacity` -> `embeddingObsOpacity`
+  - `embeddingCellOpacityMode` -> `embeddingObsOpacityMode`
 
 ## [1.1.21](https://www.npmjs.com/package/vitessce/v/1.1.21) - 2022-04-27
 

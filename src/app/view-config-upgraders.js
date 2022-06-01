@@ -345,3 +345,70 @@ export function upgradeFrom1_0_9(config) {
     version: '1.0.10',
   };
 }
+
+// Added in version 1.0.11:
+// - Changes to spatial layer coordination type names.
+// - Cell -> Obs, Gene -> Feature in coordination type names.
+export function upgradeFrom1_0_10(config) {
+  const coordinationSpace = { ...config.coordinationSpace };
+
+  const scopeAnalogies = {
+    // Spatial layer types
+    spatialRasterLayers: 'spatialImageLayer',
+    spatialCellsLayer: 'spatialSegmentationLayer',
+    spatialMoleculesLayer: 'spatialPointLayer',
+    spatialNeighborhoodsLayer: 'spatialNeighborhoodLayer',
+    // Other types
+    cellFilter: 'obsFilter',
+    cellHighlight: 'obsHighlight',
+    cellSelection: 'obsSelection',
+    cellSetSelection: 'obsSetSelection',
+    cellSetHighlight: 'obsSetHighlight',
+    cellSetColor: 'obsSetColor',
+    geneFilter: 'featureFilter',
+    geneHighlight: 'featureHighlight',
+    geneSelection: 'featureSelection',
+    geneExpressionColormap: 'featureValueColormap',
+    geneExpressionColormapRange: 'featureValueColormapRange',
+    cellColorEncoding: 'obsColorEncoding',
+    additionalCellSets: 'additionalObsSets',
+    embeddingCellSetPolygonsVisible: 'embeddingObsSetPolygonsVisible',
+    embeddingCellSetLabelsVisible: 'embeddingObsSetLabelsVisible',
+    embeddingCellSetLabelSize: 'embeddingObsSetLabelSize',
+    embeddingCellRadius: 'embeddingObsRadius',
+    embeddingCellRadiusMode: 'embeddingObsRadiusMode',
+    embeddingCellOpacity: 'embeddingObsOpacity',
+    embeddingCellOpacityMode: 'embeddingObsOpacityMode',
+  };
+
+  Object.entries(scopeAnalogies).forEach(([oldKey, newKey]) => {
+    if (coordinationSpace[oldKey]) {
+      coordinationSpace[newKey] = coordinationSpace[oldKey];
+      delete coordinationSpace[oldKey];
+    }
+  });
+
+  const layout = config.layout.map((component) => {
+    const newComponent = { ...component };
+    const { coordinationScopes = {} } = newComponent;
+
+    Object.entries(scopeAnalogies).forEach(([oldKey, newKey]) => {
+      if (coordinationScopes[oldKey]) {
+        coordinationScopes[newKey] = coordinationScopes[oldKey];
+        delete coordinationScopes[oldKey];
+      }
+    });
+
+    return {
+      ...newComponent,
+      coordinationScopes,
+    };
+  });
+
+  return {
+    ...config,
+    coordinationSpace,
+    layout,
+    version: '1.0.11',
+  };
+}

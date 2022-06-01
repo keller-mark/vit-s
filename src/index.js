@@ -18,7 +18,7 @@ import {
   DataType,
   FileType,
   CoordinationType,
-} from './app/constants';
+} from './app/constants-merged';
 // For plugin view types:
 import TitleInfo from './components/TitleInfo';
 import { useReady, useUrls } from './components/hooks';
