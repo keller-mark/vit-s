@@ -453,11 +453,22 @@ export function upgradeFrom1_0_11(config) {
 // - Adds the property `coordinationValues` for
 // view config file definitions but is not yet
 // used to do file matching/lookups.
-export function upgradeFrom1_0_12(config) {
+export function upgradeFrom1_0_13(config) {
   const newConfig = cloneDeep(config);
 
   return {
     ...newConfig,
     version: '1.0.13',
+  };
+}
+
+// Added in version 1.0.14:
+// - Support for the optional 'coordinationValues' property for views.
+export function upgradeFrom1_0_13(config) {
+  const newConfig = cloneDeep(config);
+
+  return {
+    ...newConfig,
+    version: '1.0.14',
   };
 }
