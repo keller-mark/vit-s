@@ -44,12 +44,9 @@ import {
   JsonLoader,
   LoaderResult,
   AbstractTwoStepLoader,
-  AnnDataLoaders,
 } from './loaders';
 import {
   JsonSource,
-  ZarrDataSource,
-  AnnDataSource,
 } from './loaders/data-sources';
 
 
@@ -91,8 +88,5 @@ export {
   JsonLoader,
   LoaderResult,
   AbstractTwoStepLoader,
-  AnnDataLoaders,
   JsonSource,
-  ZarrDataSource,
-  AnnDataSource,
 };
