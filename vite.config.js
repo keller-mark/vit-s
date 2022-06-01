@@ -3,7 +3,7 @@ import path from 'path';
 import replace from 'rollup-plugin-replace';
 import { defineConfig } from 'vite';
 
-console.log(process.env.NODE_ENV);
+process.env.NODE_ENV = 'production'
 
 export default defineConfig({
   plugins: [

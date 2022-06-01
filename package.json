@@ -171,7 +171,7 @@
     "@turf/difference": "6.0.1"
   },
   "scripts": {
-    "build-vite": "vite build",
+    "build-vite": "vite build --mode lib",
     "build-demo:prod": "node scripts/build-demo.js production",
     "build-lib:prod": "NODE_ENV=production node scripts/build-esm.mjs && node scripts/build-lib.js production",
     "build-demo:dev": "node scripts/build-demo.js development",
