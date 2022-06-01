@@ -412,3 +412,39 @@ export function upgradeFrom1_0_10(config) {
     version: '1.0.11',
   };
 }
+
+// Added in version 1.0.12:
+// - Explict coordinationScopesBy property for view definitions,
+// to replace the previous implicit mapping of per-dataset coordination
+// scopes.
+export function upgradeFrom1_0_11(config) {
+  const newConfig = cloneDeep(config);
+
+  const { layout } = newConfig;
+  const newLayout = layout.map((view) => {
+    const { coordinationScopes = {} } = view;
+    if (coordinationScopes.dataset && Array.isArray(coordinationScopes.dataset)) {
+      const coordinationScopesBy = {
+        dataset: {},
+      };
+      Object.entries(coordinationScopes).forEach(([coordinationType, coordinationScope]) => {
+        if (coordinationType !== 'dataset' && !Array.isArray(coordinationScope) && typeof coordinationScope === 'object') {
+          coordinationScopesBy.dataset[coordinationType] = coordinationScope;
+          delete coordinationScopes[coordinationType];
+        }
+      });
+      return {
+        ...view,
+        coordinationScopes,
+        coordinationScopesBy,
+      };
+    }
+    return view;
+  });
+
+  return {
+    ...newConfig,
+    layout: newLayout,
+    version: '1.0.12',
+  };
+}

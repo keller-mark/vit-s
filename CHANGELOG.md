@@ -40,6 +40,62 @@
 - Improved documentation.
   - More consistently using the term "view type" rather than "component".
   - Added a config schema version diff tool to the view config JSON documentation page.
+- Added the `coordinationScopesBy` property for view definitions, to replace the previous implicit mapping of per-dataset coordination scopes:
+  ```diff
+  datasets: [
+    { uid: 'my-query', ... },
+    { uid: 'some-atlas', ... },
+  ],
+  coordinationSpace: {
+    dataset: {
+      REFERENCE: 'some-atlas',
+      QUERY: 'my-query',
+    },
+    embeddingType: {
+      common: 'UMAP',
+    },
+    embeddingZoom: {
+      refZoom: 2,
+      qryZoom: 4,
+    },
+    ...,
+  },
+  layout: [
+    {
+      component: 'qrComparisonScatterplot',
+      coordinationScopes: {
+        dataset: ['REFERENCE', 'QUERY'],
+        embeddingType: 'common',
+      },
+  +   coordinationScopesBy: {
+        dataset: {
+          embeddingZoom: { REFERENCE: 'refZoom', QUERY: 'qryZoom' },
+        },
+      },
+      x: 0, y: 0, w: 5, h: 12,
+    },
+    ...,
+  ],
+  ...
+  ```
+    - To upgrade existing code:
+  ```diff
+  export default function MyPluginSubscriber(props) {
+  const {
+    coordinationScopes,
+  +  coordinationScopesBy,
+    // ...
+  } = props;
+  // ...
+  const [cValues, cSetters] = useMultiDatasetCoordination(
+    PLUGIN_COMPONENT_COORDINATION_TYPES[PluginViewType.QR_STATUS],
+    coordinationScopes,
+  +  coordinationScopesBy,
+  );
+  ```
+
+
+
 
 ## [1.1.21](https://www.npmjs.com/package/vitessce/v/1.1.21) - 2022-04-27
 
