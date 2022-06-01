@@ -30,8 +30,5 @@ module.exports = {
     appNodeModules: resolveApp('node_modules'),
     libBuild: resolveApp('dist'),
     libIndexJs: resolveModule(resolveApp, 'src/index'),
-    libOtherJs: fromEntries(componentsToExport.map(name => [
-        name,
-        resolveModule(resolveApp, `src/components/${name}/index`)
-    ]))
+    libOtherJs: {},
 };

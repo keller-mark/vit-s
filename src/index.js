@@ -1,6 +1,4 @@
-import VitessceGrid from './app/VitessceGrid';
 import {
-  createApp,
   Vitessce,
   encodeConfInUrl,
   decodeURLParamsToConf,
@@ -56,8 +54,6 @@ import {
 
 
 export {
-  VitessceGrid,
-  createApp,
   Vitessce,
   encodeConfInUrl,
   decodeURLParamsToConf,

@@ -453,7 +453,7 @@ export function upgradeFrom1_0_11(config) {
 // - Adds the property `coordinationValues` for
 // view config file definitions but is not yet
 // used to do file matching/lookups.
-export function upgradeFrom1_0_13(config) {
+export function upgradeFrom1_0_12(config) {
   const newConfig = cloneDeep(config);
 
   return {

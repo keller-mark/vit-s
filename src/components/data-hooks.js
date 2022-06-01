@@ -7,11 +7,6 @@ import {
   LoaderNotFoundError,
   DatasetNotFoundError,
 } from '../loaders/errors/index';
-import {
-  DEFAULT_MOLECULES_LAYER,
-  DEFAULT_CELLS_LAYER,
-  DEFAULT_NEIGHBORHOODS_LAYER,
-} from './spatial/constants';
 import { getDefaultCoordinationValues } from '../app/plugins';
 
 /**
@@ -125,16 +120,10 @@ export function useCellsData(
         setCells(data);
         setCellsCount(Object.keys(data).length);
         addUrl(url, 'Cells');
-        // This dataset has cells, so set up the
-        // spatial cells layer coordination value
-        // using the cell layer singleton.
-        const coordinationValuesOrDefault = {
-          spatialSegmentationLayer: DEFAULT_CELLS_LAYER,
-          ...coordinationValues,
-        };
         initCoordinationSpace(
-          coordinationValuesOrDefault,
-          coordinationSetters, initialCoordinationValues,
+          coordinationValues,
+          coordinationSetters,
+          initialCoordinationValues,
         );
         setItemIsReady('cells');
       });
@@ -469,12 +458,8 @@ export function useMoleculesData(
           .map(l => l.length)
           .reduce((a, b) => a + b, 0));
         addUrl(url, 'Molecules');
-        const coordinationValuesOrDefault = {
-          spatialPointLayer: DEFAULT_MOLECULES_LAYER,
-          ...coordinationValues,
-        };
         initCoordinationSpace(
-          coordinationValuesOrDefault,
+          coordinationValues,
           coordinationSetters,
           initialCoordinationValues,
         );
@@ -537,12 +522,8 @@ export function useNeighborhoodsData(
           const { data, url, coordinationValues } = payload;
           setNeighborhoods(data);
           addUrl(url, 'Neighborhoods');
-          const coordinationValuesOrDefault = {
-            spatialNeighborhoodLayer: DEFAULT_NEIGHBORHOODS_LAYER,
-            ...coordinationValues,
-          };
           initCoordinationSpace(
-            coordinationValuesOrDefault,
+            coordinationValues,
             coordinationSetters,
             initialCoordinationValues,
           );
