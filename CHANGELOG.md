@@ -93,8 +93,8 @@
   +  coordinationScopesBy,
   );
   ```
-
-
+- Added the property `coordinationValues` for view config file definitions.
+- Added the `useMatchingLoader` hook.
 
 
 ## [1.1.21](https://www.npmjs.com/package/vitessce/v/1.1.21) - 2022-04-27
