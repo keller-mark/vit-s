@@ -7,6 +7,8 @@
   - `featureType`
   - `featureValueType`
 - Added the optional `coordinationValues` property for view definitions in the view config, as a shortcut to set coordination values for independent views. Used during the `initStrategy: 'auto'` initialization process.
+- Added a mapping from file types to data types, making the `datasets[].files[].type` property no longer required.
+- Added a registration function for plugin convenience file types.
 
 ### Changed
 - Fixed buggy view closing behavior by using the view `uid` rather than the index as the component `key`.
