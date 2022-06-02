@@ -3,28 +3,25 @@ import path from 'path';
 import replace from 'rollup-plugin-replace';
 import { defineConfig } from 'vite';
 
-process.env.NODE_ENV = 'production'
+process.env.NODE_ENV = 'production';
 
 export default defineConfig({
   plugins: [
     react({
       jsxRuntime: 'classic',
       babel: {
-        "presets": [
-          "react-app"
+        presets: [
+          'react-app',
         ],
-        "plugins": [
-          "glsl"
-        ]
-      }
+      },
     }),
   ],
   build: {
     lib: {
-        entry: path.resolve(__dirname, 'src/index.js'),
-        name: 'VitS',
-        formats: ['es', 'umd'],
-        fileName: (format) => `vit-s.${format}.js`,
+      entry: path.resolve(__dirname, 'src/index.js'),
+      name: 'VitS',
+      formats: ['es', 'umd'],
+      fileName: format => `vit-s.${format}.js`,
     },
     rollupOptions: {
       plugins: [
@@ -34,10 +31,10 @@ export default defineConfig({
       ],
       external: ['react', 'react-dom'],
       output: {
-          globals: {
-              react: 'React',
-              'react-dom': 'ReactDOM',
-          },
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM',
+        },
       },
     },
   },

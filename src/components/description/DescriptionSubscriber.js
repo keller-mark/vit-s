@@ -6,7 +6,7 @@ import { COMPONENT_COORDINATION_TYPES } from '../../app/state/coordination';
 import TitleInfo from '../TitleInfo';
 import Description from './Description';
 
-const DESCRIPTION_DATA_TYPES = ['raster'];
+const DESCRIPTION_DATA_TYPES = [];
 
 /**
  * A subscriber component for a text description component.
@@ -25,7 +25,7 @@ export default function DescriptionSubscriber(props) {
     description: descriptionOverride,
     removeGridComponent,
     theme,
-    title = 'Data Set',
+    title = 'Description',
   } = props;
 
   const loaders = useLoaders();
@@ -33,7 +33,6 @@ export default function DescriptionSubscriber(props) {
   // Get "props" from the coordination space.
   const [{
     dataset,
-    spatialImageLayer: rasterLayers,
   }] = useCoordination(COMPONENT_COORDINATION_TYPES.description, coordinationScopes);
 
   const [
@@ -53,26 +52,6 @@ export default function DescriptionSubscriber(props) {
 
   // Get data from loaders using the data hooks.
   const [description] = useDescription(loaders, dataset);
-  const [raster, imageLayerLoaders, imageLayerMeta] = useRasterData(
-    loaders, dataset, setItemIsReady, () => {}, false,
-  );
-
-  const metadata = useMemo(() => {
-    const result = new Map();
-    if (rasterLayers && rasterLayers.length > 0 && raster && imageLayerMeta && imageLayerLoaders) {
-      rasterLayers.forEach((layer) => {
-        if (imageLayerMeta[layer.index]) {
-          // Want to ensure that layer index is a string.
-          const { format } = imageLayerLoaders[layer.index].metadata;
-          result.set(`${layer.index}`, {
-            name: raster.meta[layer.index].name,
-            metadata: format && format(),
-          });
-        }
-      });
-    }
-    return result;
-  }, [raster, rasterLayers, imageLayerMeta, imageLayerLoaders]);
 
   return (
     <TitleInfo
@@ -84,7 +63,6 @@ export default function DescriptionSubscriber(props) {
     >
       <Description
         description={descriptionOverride || description}
-        metadata={metadata}
       />
     </TitleInfo>
   );

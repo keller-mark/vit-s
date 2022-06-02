@@ -1,5 +1,5 @@
 import {
-  Vitessce,
+  Vitessce as Vit,
   encodeConfInUrl,
   decodeURLParamsToConf,
   registerPluginViewType,
@@ -7,7 +7,7 @@ import {
   registerPluginFileType,
 } from './app';
 import {
-  VitessceConfig,
+  VitessceConfig as VitConfig,
   hconcat,
   vconcat,
 } from './api';
@@ -51,10 +51,10 @@ import {
 
 
 export {
-  Vitessce,
+  Vit,
   encodeConfInUrl,
   decodeURLParamsToConf,
-  VitessceConfig,
+  VitConfig,
   hconcat,
   vconcat,
   Component,
