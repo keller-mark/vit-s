@@ -13,6 +13,9 @@ export default defineConfig({
         presets: [
           'react-app',
         ],
+        plugins: [
+          'glsl',
+        ],
       },
     }),
   ],
