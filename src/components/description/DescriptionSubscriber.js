@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { useReady } from '../hooks';
-import { useDescription, useRasterData } from '../data-hooks';
+import { useDescription } from '../data-hooks';
 import { useCoordination, useLoaders } from '../../app/state/hooks';
 import { COMPONENT_COORDINATION_TYPES } from '../../app/state/coordination';
 import TitleInfo from '../TitleInfo';
@@ -37,7 +37,7 @@ export default function DescriptionSubscriber(props) {
 
   const [
     isReady,
-    setItemIsReady,
+    setItemIsReady, // eslint-disable-line no-unused-vars
     setItemIsNotReady, // eslint-disable-line no-unused-vars
     resetReadyItems,
   ] = useReady(
